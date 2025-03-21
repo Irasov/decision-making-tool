@@ -1,0 +1,13 @@
+.btn {
+  flex: 1 1 100%;
+  padding: 5px;
+  background-color: #d7f9f8;
+  text-align: center;
+  border: 1px #000000 solid;
+  border-radius: 10px;
+  transition: background-color 0.3s ease 0s;
+  cursor: pointer;
+  &:hover {
+    background-color: #9bf6ff;
+  }
+}

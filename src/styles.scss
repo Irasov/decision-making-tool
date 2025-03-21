@@ -1,0 +1,73 @@
+$colorMain: #ffffea;
+/* Обнуление стилей */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  vertical-align: top;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-style: 16px;
+}
+
+body {
+  line-height: 1;
+  color: #000;
+}
+
+.wrapper {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100%;
+}
+
+/**************************************  */
+
+[class*='__container'] {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.mainpage {
+  flex-grow: 1;
+  background-color: $colorMain;
+}
