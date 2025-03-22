@@ -6,7 +6,7 @@ import Router from '../router/router';
 import type { Route } from '../router/router';
 import { Pages } from '../router/pages';
 import OptionsView from '../view/main/options/options-view';
-import DecisionView from '../view/main/decision/decision';
+import DecisionView from '../view/main/decision/decision-view';
 import NotFoundView from '../view/main/not-found/not-found-view';
 
 const wrapperConst = {
