@@ -4,7 +4,7 @@ import type { typeHTMLElement } from '../component';
 import InputTitle from '../../inputs/input-title';
 import InputWeight from '../../inputs/input-weight';
 import DeleteOptionButton from '../buttons/button-delete-option';
-import './option.scss'
+import './option.scss';
 
 const option: typeHTMLElement = {
   tag: 'div',

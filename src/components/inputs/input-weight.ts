@@ -2,6 +2,8 @@ import Component from '../util/component';
 import type { typeHTMLElement } from '../util/component';
 import type Option from '../util/option/option';
 import { Events } from '../util/events-const';
+import './input.scss';
+import './weight.scss';
 
 const input: typeHTMLElement = {
   tag: 'input',

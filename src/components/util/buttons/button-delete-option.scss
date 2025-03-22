@@ -1,0 +1,12 @@
+.option_delete {
+  padding: 5px;
+  text-align: center;
+  background-color: #fbe0e0;
+  border: 1px #000 solid;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+  &:hover {
+    background-color: #ffadad;
+  }
+}
