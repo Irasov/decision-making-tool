@@ -14,6 +14,7 @@ export default [
         document: "readonly",
         window: "readonly",
         HTMLElement: "readonly",
+        HTMLInputElement: 'readonly',
         EventListener: "readonly",
       },
     },
@@ -30,7 +31,7 @@ export default [
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/consistent-type-assertions": [
         "error",
-        { assertionStyle: "never" },
+        { assertionStyle: "as", objectLiteralTypeAssertions: "allow" },
       ],
       "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/explicit-function-return-type": "error",

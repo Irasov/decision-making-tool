@@ -8,6 +8,7 @@ import PasteButton from '../../../util/buttons/button-paste';
 import ClearButton from '../../../util/buttons/button-clear';
 import SaveButton from '../../../util/buttons/button-save';
 import LoadButton from '../../../util/buttons/button-load';
+import type Option from '../../../util/option/option';
 
 const options: typeHTMLElement = {
   tag: 'div',
@@ -16,9 +17,14 @@ const options: typeHTMLElement = {
 };
 
 export default class OptionsView extends View {
+  private options: Map<number, Option> = new Map();
   constructor(router: Router) {
     super(options);
     this.configure(router);
+  }
+
+  public removeOption(key: number): void {
+    this.options.delete(key);
   }
 
   private configure(router: Router): void {
