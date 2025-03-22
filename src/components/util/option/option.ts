@@ -1,5 +1,5 @@
 import Component from '../component';
-import type OptionsView from '../../view/main/options/options';
+import type OptionsView from '../../view/main/options/options-view';
 import type { typeHTMLElement } from '../component';
 import InputTitle from '../../inputs/input-title';
 import InputWeight from '../../inputs/input-weight';

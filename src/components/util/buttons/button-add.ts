@@ -1,6 +1,6 @@
 import Component from '../component';
 import Option from '../option/option';
-import type OptionsView from '../../view/main/options/options';
+import type OptionsView from '../../view/main/options/options-view';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
 import './button.scss';

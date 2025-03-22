@@ -1,4 +1,4 @@
-import type OptionsView from '../../view/main/options/options';
+import type OptionsView from '../../view/main/options/options-view';
 import Component from '../component';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
