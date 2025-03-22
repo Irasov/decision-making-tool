@@ -5,8 +5,8 @@ import './button.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: '',
-  classes: ['decision__paste', 'btn'],
+  content: 'PASTE LIST',
+  classes: ['options__paste', 'btn'],
 };
 
 export default class PasteButton extends Component {

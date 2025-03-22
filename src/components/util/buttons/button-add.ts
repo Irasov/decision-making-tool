@@ -5,8 +5,8 @@ import './button.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: '',
-  classes: ['decision__add', 'btn'],
+  content: 'ADD',
+  classes: ['options__add', 'btn'],
 };
 
 export default class AddButton extends Component {

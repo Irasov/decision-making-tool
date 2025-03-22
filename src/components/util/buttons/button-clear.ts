@@ -5,8 +5,8 @@ import './button.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: '',
-  classes: ['decision__clear', 'btn'],
+  content: 'CLEAR LIST',
+  classes: ['options__clear', 'btn'],
 };
 
 export default class ClearButton extends Component {

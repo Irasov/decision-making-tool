@@ -5,8 +5,8 @@ import './button.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: '',
-  classes: ['decision__save', 'btn'],
+  content: 'SAVE LIST TO FILE',
+  classes: ['options__save', 'btn'],
 };
 
 export default class SaveButton extends Component {

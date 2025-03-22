@@ -5,7 +5,7 @@ import './button.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: '',
+  content: 'LOAD LIST FROM FILE',
   classes: ['options__load', 'btn'],
 };
 

@@ -22,6 +22,13 @@ export default class OptionsView extends View {
   }
 
   private configure(router: Router): void {
-    this.getComponent().appendChildren([new AddButton(), new PasteButton(), new ClearButton(), new SaveButton(), new LoadButton(), new StartButton(router)]);
+    this.getComponent().appendChildren([
+      new AddButton(),
+      new PasteButton(),
+      new ClearButton(),
+      new SaveButton(),
+      new LoadButton(),
+      new StartButton(router),
+    ]);
   }
 }
