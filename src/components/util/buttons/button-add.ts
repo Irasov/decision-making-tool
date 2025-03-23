@@ -20,8 +20,8 @@ export default class AddButton extends Component {
   private configureBtn(optionsView: OptionsView): void {
     this.addListner(Events.CLICK, () => {
       optionsView.setIdOptions();
-      const option = new Option(optionsView.getLastIdOptions(), optionsView);
-      optionsView.setOption(optionsView.getLastIdOptions(), option);
+      const option = new Option(optionsView.getIdOptions(), optionsView);
+      optionsView.setOption(optionsView.getIdOptions(), option);
       optionsView.addOption(option);
     });
   }

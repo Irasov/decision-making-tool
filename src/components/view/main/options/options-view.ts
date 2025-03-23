@@ -26,7 +26,7 @@ const optionsDiv: typeHTMLElement = {
 export default class OptionsView extends View {
   private optionsBlock: Component;
   private options: Map<number, Option> = new Map();
-  private idOptions: number[] = [];
+  private idOptions: number = 0;
   constructor(router: Router) {
     super(options);
     this.optionsBlock = new Component(optionsDiv);
@@ -42,15 +42,11 @@ export default class OptionsView extends View {
   }
 
   public setIdOptions(): void {
-    if (this.idOptions.length > 0) {
-      this.idOptions.push(this.idOptions[this.idOptions.length - 1] + 1);
-    } else {
-      this.idOptions.push(1);
-    }
+      this.idOptions += 1;
   }
 
-  public getLastIdOptions(): number {
-    return this.idOptions[this.idOptions.length - 1];
+  public getIdOptions(): number {
+    return this.idOptions;
   }
 
   public addOption(option: Option): void {
