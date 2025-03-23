@@ -17,14 +17,23 @@ const decisionControl: typeHTMLElement = {
   classes: ['decision__control'],
 };
 
+const decisionWhell: typeHTMLElement = {
+  tag: 'div',
+  content: '',
+  classes: ['decision__wheel'],
+};
+
 export default class DecisionView extends View {
-  constructor(router: Router) {
+  private dataWheel: [number, string, number][];
+  constructor(router: Router, options: [number, string, number][]) {
     super(decision);
+    this.dataWheel = options;
     this.configure(router);
   }
 
   private configure(router: Router): void {
     const controlBlock = new Component(decisionControl, new BackButton(router));
-    this.getComponent().append(controlBlock);
+    const wheelBlock = new Component(decisionWhell);
+    this.getComponent().appendChildren([controlBlock, wheelBlock]);
   }
 }

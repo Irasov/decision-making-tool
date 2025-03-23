@@ -19,11 +19,13 @@ export default class App {
   private body = document.body;
   private main: MainView;
   private router: Router;
+  private options: OptionsView;
 
   constructor() {
     const routes = this.createRoutes();
     this.router = new Router(routes);
     this.main = new MainView();
+    this.options = new OptionsView(this.router);
   }
 
   public createView(): void {
@@ -45,19 +47,23 @@ export default class App {
       {
         path: ``,
         callback: (): void => {
-          this.setContent(new OptionsView(this.router));
+          this.options = new OptionsView(this.router);
+          this.setContent(this.options);
         },
       },
       {
         path: `${Pages.OPTIONS}`,
         callback: (): void => {
-          this.setContent(new OptionsView(this.router));
+          this.options = new OptionsView(this.router);
+          this.setContent(this.options);
         },
       },
       {
         path: `${Pages.DECISION}`,
         callback: (): void => {
-          this.setContent(new DecisionView(this.router));
+          this.setContent(
+            new DecisionView(this.router, this.options.getDataWeel())
+          );
         },
       },
       {
