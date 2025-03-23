@@ -40,17 +40,21 @@ export default class OptionsView extends View {
   public removeOption(key: number): void {
     this.options.delete(key);
   }
-  
+
   public getOptions(): Map<number, Option> {
     return this.options;
   }
 
-  public getDataWeel():[number, string, number][] {
-      return Array.from(this.getOptions(), ([key, value]) => [key, value.getTitle(), value.getWeight()]);
+  public getDataWeel(): [number, string, number][] {
+    return Array.from(this.getOptions(), ([key, value]) => [
+      key,
+      value.getTitle(),
+      value.getWeight(),
+    ]);
   }
 
-  public setIdOptions():  void {
-      this.idOptions += 1;
+  public setIdOptions(): void {
+    this.idOptions += 1;
   }
 
   public getIdOptions(): number {
