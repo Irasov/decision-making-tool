@@ -4,6 +4,7 @@ import type Router from '../../../router/router';
 import type { typeHTMLElement } from '../../../util/component';
 import BackButton from '../../../util/buttons/button-back';
 import './decision.scss';
+import Wheel from '../../../util/wheel/wheel';
 
 const decision: typeHTMLElement = {
   tag: 'div',
@@ -28,12 +29,12 @@ export default class DecisionView extends View {
   constructor(router: Router, options: [number, string, number][]) {
     super(decision);
     this.dataWheel = options;
-    this.configure(router);
+    this.configure(router, options);
   }
 
-  private configure(router: Router): void {
+  private configure(router: Router, options: [number, string, number][]): void {
     const controlBlock = new Component(decisionControl, new BackButton(router));
-    const wheelBlock = new Component(decisionWhell);
+    const wheelBlock = new Component(decisionWhell, new Wheel(options));
     this.getComponent().appendChildren([controlBlock, wheelBlock]);
   }
 }
