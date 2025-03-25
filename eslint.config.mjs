@@ -15,6 +15,8 @@ export default [
         window: "readonly",
         HTMLElement: "readonly",
         HTMLInputElement: 'readonly',
+        HTMLCanvasElement: 'readonly',
+        CanvasRenderingContext2D: 'readonly',
         EventListener: "readonly",
       },
     },
