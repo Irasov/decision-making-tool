@@ -92,4 +92,6 @@ export default class Wheel extends Component {
     wheel.height = 500;
     Wheel.draw(wheel, options);
   }
+
+  public spin(): void {}
 }
