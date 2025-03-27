@@ -25,6 +25,12 @@ const decisionWhell: typeHTMLElement = {
   classes: ['decision__wheel'],
 };
 
+const decisionResult: typeHTMLElement = {
+  tag: 'div',
+  content: '',
+  classes: ['decision__res'],
+};
+
 export default class DecisionView extends View {
   private dataWheel: [number, string, number][];
   constructor(router: Router, options: [number, string, number][]) {
@@ -34,11 +40,16 @@ export default class DecisionView extends View {
   }
 
   private configure(router: Router, options: [number, string, number][]): void {
-    const wheel = new Wheel(options);
+    const result = new Component(decisionResult);
+    const wheel = new Wheel(options, (res: string) => {
+      result.setTextContent(res);
+    });
+
     const controlBlock = new Component(
       decisionControl,
       new BackButton(router),
-      new StartWheel(wheel)
+      new StartWheel(wheel),
+      result
     );
     const wheelBlock = new Component(decisionWhell, wheel);
     this.getComponent().appendChildren([controlBlock, wheelBlock]);

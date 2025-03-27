@@ -18,6 +18,7 @@ export default [
         HTMLCanvasElement: 'readonly',
         CanvasRenderingContext2D: 'readonly',
         EventListener: "readonly",
+        requestAnimationFrame: "readonly",
       },
     },
     plugins: {
