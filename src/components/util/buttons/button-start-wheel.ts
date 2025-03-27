@@ -2,11 +2,11 @@ import Component from '../component';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
 import type Wheel from '../wheel/wheel';
-import './button.scss';
+import './button-start-wheels.scss';
 
 const btn: typeHTMLElement = {
   tag: 'button',
-  content: 'PLAY',
+  content: '',
   classes: ['decision__play'],
 };
 
