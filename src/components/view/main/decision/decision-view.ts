@@ -7,6 +7,7 @@ import './decision.scss';
 import Wheel from '../../../util/wheel/wheel';
 import StartWheel from '../../../util/buttons/button-start-wheel';
 import SoundButton from '../../../util/buttons/button-sound';
+import notificationSound from './../../../../assets/finish.mp3';
 
 const decision: typeHTMLElement = {
   tag: 'div',
@@ -32,6 +33,8 @@ const decisionResult: typeHTMLElement = {
   classes: ['decision__res'],
 };
 
+const CLASS_MUTE = 'decision__sound_mute';
+
 export default class DecisionView extends View {
   private dataWheel: [number, string, number][];
   constructor(router: Router, options: [number, string, number][]) {
@@ -41,10 +44,15 @@ export default class DecisionView extends View {
   }
 
   private configure(router: Router, options: [number, string, number][]): void {
+    const audio = new Audio(notificationSound);
+    audio.preload = 'auto';
     const result = new Component(decisionResult);
     const sound = new SoundButton();
     const wheel = new Wheel(options, (res: string) => {
       result.setTextContent(res);
+      if (!sound.getNode().classList.contains(CLASS_MUTE)) {
+        audio.play();
+      }
     });
 
     const controlBlock = new Component(

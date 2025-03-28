@@ -9,7 +9,7 @@ const btn: typeHTMLElement = {
   classes: ['decision__sound'],
 };
 
-const MUTE = "decision__sound_mute";
+const MUTE = 'decision__sound_mute';
 
 export default class SoundButton extends Component {
   constructor() {

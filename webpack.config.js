@@ -52,6 +52,16 @@ module.exports = ({ development }) => ({
         loader: 'html-loader',
       },
       {
+        test: /\.(mp3|wav)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/'
+          }
+        }]
+      },
+      {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },

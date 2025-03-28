@@ -19,6 +19,8 @@ export default [
         CanvasRenderingContext2D: 'readonly',
         EventListener: "readonly",
         requestAnimationFrame: "readonly",
+        HTMLAudioElement: "readonly",
+        Audio: "readonly"
       },
     },
     plugins: {
