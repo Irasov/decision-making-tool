@@ -6,6 +6,7 @@ import BackButton from '../../../util/buttons/button-back';
 import './decision.scss';
 import Wheel from '../../../util/wheel/wheel';
 import StartWheel from '../../../util/buttons/button-start-wheel';
+import SoundButton from '../../../util/buttons/button-sound';
 
 const decision: typeHTMLElement = {
   tag: 'div',
@@ -41,6 +42,7 @@ export default class DecisionView extends View {
 
   private configure(router: Router, options: [number, string, number][]): void {
     const result = new Component(decisionResult);
+    const sound = new SoundButton();
     const wheel = new Wheel(options, (res: string) => {
       result.setTextContent(res);
     });
@@ -48,6 +50,7 @@ export default class DecisionView extends View {
     const controlBlock = new Component(
       decisionControl,
       new BackButton(router),
+      sound,
       new StartWheel(wheel),
       result
     );
