@@ -27,6 +27,10 @@ export default class Component {
     });
   }
 
+  public getChildren(): Component[] {
+    return this.children;
+  }
+
   public getNode(): HTMLElement {
     return this.node;
   }

@@ -20,7 +20,8 @@ export default [
         EventListener: "readonly",
         requestAnimationFrame: "readonly",
         HTMLAudioElement: "readonly",
-        Audio: "readonly"
+        Audio: "readonly",
+        HTMLTextAreaElement: "readonly"
       },
     },
     plugins: {

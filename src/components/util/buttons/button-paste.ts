@@ -1,3 +1,4 @@
+import type View from '../../view/view';
 import Component from '../component';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
@@ -9,13 +10,17 @@ const btn: typeHTMLElement = {
   classes: ['options__paste', 'btn'],
 };
 
+const STATUS = 'active';
+
 export default class PasteButton extends Component {
-  constructor() {
+  constructor(view: View) {
     super(btn);
-    this.configureBtn();
+    this.configureBtn(view);
   }
 
-  private configureBtn(): void {
-    this.addListner(Events.CLICK, () => {});
+  private configureBtn(view: View): void {
+    this.addListner(Events.CLICK, () => {
+      view.getComponent().toggleClass(STATUS);
+    });
   }
 }

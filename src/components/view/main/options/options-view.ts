@@ -8,8 +8,9 @@ import PasteButton from '../../../util/buttons/button-paste';
 import ClearButton from '../../../util/buttons/button-clear';
 import SaveButton from '../../../util/buttons/button-save';
 import LoadButton from '../../../util/buttons/button-load';
-import type Option from '../../../util/option/option';
+import Option from '../../../util/option/option';
 import Component from '../../../util/component';
+import ListOptions from './modal/list-options-view';
 
 const options: typeHTMLElement = {
   tag: 'div',
@@ -22,6 +23,11 @@ const optionsDiv: typeHTMLElement = {
   content: '',
   classes: ['options__block'],
 };
+
+const CLASS_TTILE = 'input-title';
+const CLASS_WEIGHT = 'input-weight';
+const TITLE = 0;
+const WEIGHT = 1;
 
 export default class OptionsView extends View {
   private optionsBlock: Component;
@@ -65,11 +71,29 @@ export default class OptionsView extends View {
     this.optionsBlock.append(option);
   }
 
+  public setListOptions(list: string[][]): void {
+    list.forEach((e) => {
+      this.setIdOptions();
+      const option = new Option(this.getIdOptions(), this);
+      option.setTitle(e[TITLE]);
+      option.setWeight(+e[WEIGHT]);
+      option.getChildren().forEach((child) => {
+        const weight = child.getNode() as HTMLInputElement;
+        if (weight.classList.contains(CLASS_WEIGHT)) weight.value = e[WEIGHT];
+        if (weight.classList.contains(CLASS_TTILE)) weight.value = e[TITLE];
+      });
+      this.setOption(this.getIdOptions(), option);
+      this.addOption(option);
+    });
+  }
+
   private configure(router: Router): void {
+    const modalList = new ListOptions(this);
     this.getComponent().appendChildren([
       this.optionsBlock,
+      modalList.getComponent(),
       new AddButton(this),
-      new PasteButton(),
+      new PasteButton(modalList),
       new ClearButton(),
       new SaveButton(),
       new LoadButton(),
