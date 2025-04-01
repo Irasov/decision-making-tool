@@ -47,6 +47,12 @@ export default class OptionsView extends View {
     this.options.delete(key);
   }
 
+  public removeOptions(): void {
+    this.optionsBlock.destroyChildren();
+    this.options.clear();
+    this.idOptions = 0;
+  }
+
   public getOptions(): Map<number, Option> {
     return this.options;
   }
@@ -94,7 +100,7 @@ export default class OptionsView extends View {
       modalList.getComponent(),
       new AddButton(this),
       new PasteButton(modalList),
-      new ClearButton(),
+      new ClearButton(this),
       new SaveButton(),
       new LoadButton(),
       new StartButton(router),
