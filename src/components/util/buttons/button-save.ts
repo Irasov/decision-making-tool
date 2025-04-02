@@ -1,3 +1,4 @@
+import type OptionsView from '../../view/main/options/options-view';
 import Component from '../component';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
@@ -10,12 +11,14 @@ const btn: typeHTMLElement = {
 };
 
 export default class SaveButton extends Component {
-  constructor() {
+  constructor(optionView: OptionsView) {
     super(btn);
-    this.configureBtn();
+    this.configureBtn(optionView);
   }
 
-  private configureBtn(): void {
-    this.addListner(Events.CLICK, () => {});
+  private configureBtn(optionView: OptionsView): void {
+    this.addListner(Events.CLICK, () => {
+      optionView.dataJson();
+    });
   }
 }

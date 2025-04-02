@@ -21,7 +21,9 @@ export default [
         requestAnimationFrame: "readonly",
         HTMLAudioElement: "readonly",
         Audio: "readonly",
-        HTMLTextAreaElement: "readonly"
+        HTMLTextAreaElement: "readonly",
+        Blob: "readonly",
+        URL: "readonly"
       },
     },
     plugins: {

@@ -29,6 +29,12 @@ const CLASS_WEIGHT = 'input-weight';
 const TITLE = 0;
 const WEIGHT = 1;
 
+export type typeObj = {
+  id: number;
+  title: string;
+  weight: number;
+};
+
 export default class OptionsView extends View {
   private optionsBlock: Component;
   private options: Map<number, Option> = new Map();
@@ -77,6 +83,32 @@ export default class OptionsView extends View {
     this.optionsBlock.append(option);
   }
 
+  public dataJson(): void {
+    let optionsJson: typeObj[] = [];
+    this.options.forEach((e) => {
+      const obj = {
+        id: e.getId(),
+        title: e.getTitle(),
+        weight: e.getWeight(),
+      };
+      optionsJson.push(obj);
+    });
+    const allJson = {
+      options: optionsJson,
+      lastIndex: this.getIdOptions(),
+    };
+    const data = JSON.stringify(allJson, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'option-list.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
   public setListOptions(list: string[][]): void {
     list.forEach((e) => {
       this.setIdOptions();
@@ -101,7 +133,7 @@ export default class OptionsView extends View {
       new AddButton(this),
       new PasteButton(modalList),
       new ClearButton(this),
-      new SaveButton(),
+      new SaveButton(this),
       new LoadButton(),
       new StartButton(router),
     ]);
