@@ -100,7 +100,7 @@ export default class OptionsView extends View {
       options: optionsJson,
       lastIndex: this.getIdOptions(),
     };
-    const data = JSON.stringify(allJson, null, 2);
+    const data = JSON.stringify(allJson, null);
     const blob = new Blob([data], { type: TYPE_BLOB });
     const url = URL.createObjectURL(blob);
     const a = document.createElement(LINK);
