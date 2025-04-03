@@ -38,14 +38,45 @@ export type typeObj = {
   weight: number;
 };
 
+type optionsJson = {
+  options: typeObj[];
+  lastIndex: number;
+};
+
 export default class OptionsView extends View {
   private optionsBlock: Component;
   private options: Map<number, Option> = new Map();
   private idOptions: number = 0;
+  private jsonOptions: optionsJson = {
+    options: [
+      {
+        id: 0,
+        title: '',
+        weight: 0,
+      },
+    ],
+    lastIndex: 0,
+  };
+
   constructor(router: Router) {
     super(options);
     this.optionsBlock = new Component(optionsDiv);
     this.configure(router);
+  }
+
+  public static readFileAsJson(file: File): Promise<optionsJson> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (): void => {
+        try {
+          resolve(JSON.parse(reader.result as string));
+        } catch (error) {
+          throw new Error('Error Download JSON' + String(error));
+        }
+      };
+      reader.onerror = (): void => reject(reader.error);
+      reader.readAsText(file);
+    });
   }
 
   public setOption(id: number, option: Option): void {
@@ -112,6 +143,48 @@ export default class OptionsView extends View {
     URL.revokeObjectURL(url);
   }
 
+  public loadDataJson(): void {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json';
+    input.style.display = 'none';
+    document.body.appendChild(input);
+    input.addEventListener('change', this.handleFileUpload.bind(this));
+    input.click();
+    document.body.removeChild(input);
+  }
+
+  public async handleFileUpload(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    try {
+      this.jsonOptions = await OptionsView.readFileAsJson(file);
+      this.jsonRender(this.jsonOptions);
+    } catch (error) {
+      throw new Error('Error Download JSON' + String(error));
+    }
+  }
+
+  public jsonRender(data: optionsJson): void {
+    this.removeOptions();
+    this.idOptions = data.lastIndex;
+    data.options.forEach((e) => {
+      const option = new Option(e.id, this);
+      option.setTitle(e.title);
+      option.setWeight(e.weight);
+      option.getChildren().forEach((child) => {
+        const weight = child.getNode() as HTMLInputElement;
+        if (weight.classList.contains(CLASS_WEIGHT))
+          weight.value = String(e.weight);
+        if (weight.classList.contains(CLASS_TTILE)) weight.value = e.title;
+      });
+      this.setOption(e.id, option);
+      this.addOption(option);
+    });
+  }
+
   public setListOptions(list: string[][]): void {
     list.forEach((e) => {
       this.setIdOptions();
@@ -137,7 +210,7 @@ export default class OptionsView extends View {
       new PasteButton(modalList),
       new ClearButton(this),
       new SaveButton(this),
-      new LoadButton(),
+      new LoadButton(this),
       new StartButton(router),
     ]);
   }

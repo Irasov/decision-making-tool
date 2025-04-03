@@ -23,7 +23,10 @@ export default [
         Audio: "readonly",
         HTMLTextAreaElement: "readonly",
         Blob: "readonly",
-        URL: "readonly"
+        URL: "readonly",
+        Event: "readonly",
+        File: "readonly",
+        FileReader: "readonly"
       },
     },
     plugins: {

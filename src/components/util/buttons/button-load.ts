@@ -1,4 +1,5 @@
 import Component from '../component';
+import type OptionsView from '../../view/main/options/options-view';
 import type { typeHTMLElement } from '../component';
 import { Events } from '../events-const';
 import './button.scss';
@@ -10,12 +11,14 @@ const btn: typeHTMLElement = {
 };
 
 export default class LoadButton extends Component {
-  constructor() {
+  constructor(optionsView: OptionsView) {
     super(btn);
-    this.configureBtn();
+    this.configureBtn(optionsView);
   }
 
-  private configureBtn(): void {
-    this.addListner(Events.CLICK, () => {});
+  private configureBtn(optionsView: OptionsView): void {
+    this.addListner(Events.CLICK, () => {
+      optionsView.loadDataJson();
+    });
   }
 }
