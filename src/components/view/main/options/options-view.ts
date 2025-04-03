@@ -11,6 +11,7 @@ import LoadButton from '../../../util/buttons/button-load';
 import Option from '../../../util/option/option';
 import Component from '../../../util/component';
 import ListOptions from './modal/list-options-view';
+import { Events } from '../../../util/events-const';
 
 const options: typeHTMLElement = {
   tag: 'div',
@@ -31,6 +32,10 @@ const WEIGHT = 1;
 const TYPE_BLOB = 'application/json';
 const LINK = 'a';
 const FILE_NAME = 'option-list.json';
+const INPUT = 'input';
+const FILE = 'file';
+const NONE = 'none';
+const ERROR_MESSAGE = 'Error Download JSON';
 
 export type typeObj = {
   id: number;
@@ -71,7 +76,7 @@ export default class OptionsView extends View {
         try {
           resolve(JSON.parse(reader.result as string));
         } catch (error) {
-          throw new Error('Error Download JSON' + String(error));
+          throw new Error(ERROR_MESSAGE + String(error));
         }
       };
       reader.onerror = (): void => reject(reader.error);
@@ -144,12 +149,12 @@ export default class OptionsView extends View {
   }
 
   public loadDataJson(): void {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'application/json';
-    input.style.display = 'none';
+    const input = document.createElement(INPUT);
+    input.type = FILE;
+    input.accept = TYPE_BLOB;
+    input.style.display = NONE;
     document.body.appendChild(input);
-    input.addEventListener('change', this.handleFileUpload.bind(this));
+    input.addEventListener(Events.CHANGE, this.handleFileUpload.bind(this));
     input.click();
     document.body.removeChild(input);
   }
@@ -163,7 +168,7 @@ export default class OptionsView extends View {
       this.jsonOptions = await OptionsView.readFileAsJson(file);
       this.jsonRender(this.jsonOptions);
     } catch (error) {
-      throw new Error('Error Download JSON' + String(error));
+      throw new Error(ERROR_MESSAGE + String(error));
     }
   }
 
