@@ -12,6 +12,7 @@ import Option from '../../../util/option/option';
 import Component from '../../../util/component';
 import ListOptions from './modal/list-options-view';
 import { Events } from '../../../util/events-const';
+import ModalWarningView from './modal/window-warning-view';
 
 const options: typeHTMLElement = {
   tag: 'div',
@@ -208,15 +209,17 @@ export default class OptionsView extends View {
 
   private configure(router: Router): void {
     const modalList = new ListOptions(this);
+    const modalWarning = new ModalWarningView();
     this.getComponent().appendChildren([
       this.optionsBlock,
       modalList.getComponent(),
+      modalWarning.getComponent(),
       new AddButton(this),
       new PasteButton(modalList),
       new ClearButton(this),
       new SaveButton(this),
       new LoadButton(this),
-      new StartButton(router),
+      new StartButton(router, this, modalWarning),
     ]);
   }
 }
