@@ -178,16 +178,7 @@ export default class OptionsView extends View {
     this.idOptions = data.lastIndex;
     data.options.forEach((e) => {
       const option = new Option(e.id, this);
-      option.setTitle(e.title);
-      option.setWeight(e.weight);
-      option.getChildren().forEach((child) => {
-        const weight = child.getNode() as HTMLInputElement;
-        if (weight.classList.contains(CLASS_WEIGHT))
-          weight.value = String(e.weight);
-        if (weight.classList.contains(CLASS_TTILE)) weight.value = e.title;
-      });
-      this.setOption(e.id, option);
-      this.addOption(option);
+      this.addListOption(option, e.id, e.title, e.weight);
     });
   }
 
@@ -195,16 +186,26 @@ export default class OptionsView extends View {
     list.forEach((e) => {
       this.setIdOptions();
       const option = new Option(this.getIdOptions(), this);
-      option.setTitle(e[TITLE]);
-      option.setWeight(+e[WEIGHT]);
-      option.getChildren().forEach((child) => {
-        const weight = child.getNode() as HTMLInputElement;
-        if (weight.classList.contains(CLASS_WEIGHT)) weight.value = e[WEIGHT];
-        if (weight.classList.contains(CLASS_TTILE)) weight.value = e[TITLE];
-      });
-      this.setOption(this.getIdOptions(), option);
-      this.addOption(option);
+      this.addListOption(option, this.getIdOptions(), e[TITLE], +e[WEIGHT]);
     });
+  }
+
+  private addListOption(
+    option: Option,
+    id: number,
+    title: string,
+    weight: number
+  ): void {
+    option.setTitle(title);
+    option.setWeight(weight);
+    option.getChildren().forEach((child) => {
+      const children = child.getNode() as HTMLInputElement;
+      if (children.classList.contains(CLASS_WEIGHT))
+        children.value = String(weight);
+      if (children.classList.contains(CLASS_TTILE)) children.value = title;
+    });
+    this.setOption(id, option);
+    this.addOption(option);
   }
 
   private configure(router: Router): void {

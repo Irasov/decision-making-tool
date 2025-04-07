@@ -18,7 +18,7 @@ const WARNING_MIN =
 const WARNING_TITLE =
   'WARNING: To start the wheel, the TITLE field must be filled in!';
 const WARNING_POSITIVE =
-  'WARNING: To start the wheel, the weight field must be a positive number greater than zero!';
+  'WARNING: To start the wheel, the WEIGHT field must be a positive number greater than zero!';
 const STATUS = 'active';
 
 export default class StartButton extends Component {
