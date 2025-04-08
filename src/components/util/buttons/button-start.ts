@@ -36,23 +36,25 @@ export default class StartButton extends Component {
     warning: ModalWarningView
   ): boolean {
     if (optionsView.getOptions().size < 2) {
-      warning.setText(WARNING_MIN);
-      warning.getComponent().toggleClass(STATUS);
+      StartButton.setMessage(warning, WARNING_MIN);
       return false;
     }
     for (let e of optionsView.getOptions().values()) {
       if (e.getTitle() === '') {
-        warning.setText(WARNING_TITLE);
-        warning.getComponent().toggleClass(STATUS);
+        StartButton.setMessage(warning, WARNING_TITLE);
         return false;
       }
       if (e.getWeight() < 1) {
-        warning.setText(WARNING_POSITIVE);
-        warning.getComponent().toggleClass(STATUS);
+        StartButton.setMessage(warning, WARNING_POSITIVE);
         return false;
       }
     }
     return true;
+  }
+
+  private static setMessage(warning: ModalWarningView, message: string): void {
+    warning.setText(message);
+    warning.getComponent().toggleClass(STATUS);
   }
 
   private configure(
