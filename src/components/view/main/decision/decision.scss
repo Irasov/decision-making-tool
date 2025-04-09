@@ -1,0 +1,40 @@
+$colorTitle: #c095e4;
+.decision {
+  &__control {
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 15px;
+  }
+  &__wheel {
+    padding: 15px 0px;
+    text-align: center;
+  }
+  &__label-time {
+    align-self: center;
+    font-size: 18px;
+    color: #c095e4;
+  }
+  &__time {
+    padding: 5px;
+    width: 50px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #d6e6ff;
+    color: #c095e4;
+    font-size: 18px;
+  }
+  &__res {
+    flex: 1 1 100%;
+    height: 28px;
+    padding: 3px;
+    background-color: #d6e6ff;
+    border: 1px #000 solid;
+    font-size: 24px;
+    border-radius: 10px;
+    text-align: center;
+    color: $colorTitle;
+  }
+}

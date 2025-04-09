@@ -1,0 +1,19 @@
+$colorTitle: #c095e4;
+$colorHeader: #fff0d4;
+
+.header {
+  background-color: $colorHeader;
+  &__body {
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+  }
+  &__title {
+    font-size: 36px;
+    color: $colorTitle;
+    @media (max-width: 499.98px) {
+      font-size: 24px;
+    }
+  }
+}

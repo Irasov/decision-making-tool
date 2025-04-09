@@ -1,0 +1,12 @@
+.decision__sound {
+  width: 50px;
+  height: 50px;
+  background-image: url('./../../../assets/volume.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  &_mute {
+    background-image: url('./../../../assets/mute.png');
+  }
+}

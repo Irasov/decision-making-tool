@@ -1,0 +1,24 @@
+import Component from '../component';
+import type OptionsView from '../../view/main/options/options-view';
+import type { typeHTMLElement } from '../component';
+import { Events } from '../events-const';
+import './button.scss';
+
+const btn: typeHTMLElement = {
+  tag: 'button',
+  content: 'LOAD LIST FROM FILE',
+  classes: ['options__load', 'btn'],
+};
+
+export default class LoadButton extends Component {
+  constructor(optionsView: OptionsView) {
+    super(btn);
+    this.configureBtn(optionsView);
+  }
+
+  private configureBtn(optionsView: OptionsView): void {
+    this.addListner(Events.CLICK, () => {
+      optionsView.loadDataJson();
+    });
+  }
+}

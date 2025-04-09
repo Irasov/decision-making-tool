@@ -1,0 +1,23 @@
+$colorFooter: #fff0d4;
+$colorLink: #000000;
+$colorHoverLink: #666363;
+
+.footer {
+  background-color: $colorFooter;
+  &__body {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10x;
+  }
+  &__link {
+    text-decoration: none;
+    color: $colorLink;
+    transition: color 0.3s ease 0s;
+    &:hover {
+      color: $colorHoverLink;
+    }
+  }
+}
