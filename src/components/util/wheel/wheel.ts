@@ -24,9 +24,11 @@ export default class Wheel extends Component {
 
   constructor(
     options: [number, string, number][],
-    callback: (sector: string) => void
+    callback: (sector: string) => void,
+    time: number
   ) {
     super(optionId);
+    this.spinTotalTime = time * 1000;
     this.options = options;
     this.callback = callback;
     this.colors = options.map(() => Wheel.randomColor());
@@ -41,12 +43,15 @@ export default class Wheel extends Component {
     return color;
   }
 
+  public setTotalTime(time: number): void {
+    this.spinTotalTime = time * 1000;
+  }
+
   public spin(): void {
     if (this.spinning) return;
 
     this.spinning = true;
     this.spinTime = 0;
-    this.spinTotalTime = 3000 + Math.random() * 2000;
     this.spinVelocity = 0.2 + Math.random() * 0.3;
     this.animateSpin();
   }

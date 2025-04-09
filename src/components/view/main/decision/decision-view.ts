@@ -33,14 +33,45 @@ const decisionResult: typeHTMLElement = {
   classes: ['decision__res'],
 };
 
+const inputTime: typeHTMLElement = {
+  tag: 'input',
+  content: '',
+  classes: ['decision__time'],
+};
+
+const labeTime: typeHTMLElement = {
+  tag: 'label',
+  content: 'Time: ',
+  classes: ['decision__label-time'],
+};
+
 const CLASS_MUTE = 'decision__sound_mute';
+const attr = {
+  TYPE: 'placeholder',
+  VALUE: 'sec',
+};
+
+const SECONDS = '5';
 
 export default class DecisionView extends View {
   private dataWheel: [number, string, number][];
+  private time = new Component(inputTime);
   constructor(router: Router, options: [number, string, number][]) {
     super(decision);
+    this.setTime();
     this.dataWheel = options;
     this.configure(router, options);
+  }
+
+  private setTime(): void {
+    this.time.setAttribute(attr.TYPE, attr.VALUE);
+    const value = this.time.getNode() as HTMLInputElement;
+    value.value = SECONDS;
+  }
+
+  private getTime(): number {
+    const value = this.time.getNode() as HTMLInputElement;
+    return +value.value;
   }
 
   private configure(router: Router, options: [number, string, number][]): void {
@@ -48,18 +79,23 @@ export default class DecisionView extends View {
     audio.preload = 'auto';
     const result = new Component(decisionResult);
     const sound = new SoundButton();
-    const wheel = new Wheel(options, (res: string) => {
-      result.setTextContent(res);
-      if (!sound.getNode().classList.contains(CLASS_MUTE)) {
-        audio.play();
-      }
-    });
-
+    const wheel = new Wheel(
+      options,
+      (res: string) => {
+        result.setTextContent(res);
+        if (!sound.getNode().classList.contains(CLASS_MUTE)) {
+          audio.play();
+        }
+      },
+      this.getTime()
+    );
+    const label = new Component(labeTime, this.time);
     const controlBlock = new Component(
       decisionControl,
       new BackButton(router),
       sound,
-      new StartWheel(wheel),
+      new StartWheel(wheel, this.time),
+      label,
       result
     );
     const wheelBlock = new Component(decisionWhell, wheel);

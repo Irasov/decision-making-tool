@@ -11,13 +11,15 @@ const btn: typeHTMLElement = {
 };
 
 export default class StartWheel extends Component {
-  constructor(wheel: Wheel) {
+  constructor(wheel: Wheel, time: Component) {
     super(btn);
-    this.configureBtn(wheel);
+    this.configureBtn(wheel, time);
   }
 
-  private configureBtn(wheel: Wheel): void {
+  private configureBtn(wheel: Wheel, time: Component): void {
     this.addListner(Events.CLICK, () => {
+      const value = time.getNode() as HTMLInputElement;
+      wheel.setTotalTime(+value.value);
       wheel.spin();
     });
   }
